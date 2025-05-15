@@ -1,10 +1,16 @@
 import axios from "axios";
+import "dotenv/config";
+
+const MANDRILL_API_KEY = process.env.MANDRILL_API_KEY!;
+const FROM_EMAIL = process.env.FROM_EMAIL!;
+const TO_EMAIL = process.env.TO_EMAIL!;
 
 export const sendAutoEmail = async (
   nome: string,
   email: string,
   telefone: string
 ) => {
+  console.log(MANDRILL_API_KEY);
   const subject = "NOVA SIMULAÇÃO SOLICITADA - Consórcio Automóvel Porto";
   const html = `
     <p>Olá! Seguem abaixo os dados de quem solicitou uma simulação do Consórcio Automóvel Porto:</p><br>
@@ -14,12 +20,12 @@ export const sendAutoEmail = async (
   const result = await axios.post(
     "https://mandrillapp.com/api/1.0/messages/send.json",
     {
-      key: process.env.MANDRILL_API_KEY,
+      key: MANDRILL_API_KEY,
       message: {
         html,
         subject,
-        from_email: process.env.FROM_EMAIL,
-        to: [{ email: process.env.TO_EMAIL, type: "to" }],
+        from_email: FROM_EMAIL!,
+        to: [{ email: TO_EMAIL, type: "to" }],
       },
     }
   );
@@ -41,12 +47,12 @@ export const sendImovelEmail = async (
   const result = await axios.post(
     "https://mandrillapp.com/api/1.0/messages/send.json",
     {
-      key: process.env.MANDRILL_API_KEY,
+      key: MANDRILL_API_KEY,
       message: {
         html,
         subject,
-        from_email: process.env.FROM_EMAIL,
-        to: [{ email: process.env.TO_EMAIL, type: "to" }],
+        from_email: FROM_EMAIL,
+        to: [{ email: TO_EMAIL, type: "to" }],
       },
     }
   );
@@ -69,12 +75,12 @@ export const sendPesadosEmail = async (
   const result = await axios.post(
     "https://mandrillapp.com/api/1.0/messages/send.json",
     {
-      key: process.env.MANDRILL_API_KEY,
+      key: MANDRILL_API_KEY,
       message: {
         html,
         subject,
-        from_email: process.env.FROM_EMAIL,
-        to: [{ email: process.env.TO_EMAIL, type: "to" }],
+        from_email: FROM_EMAIL,
+        to: [{ email: TO_EMAIL, type: "to" }],
       },
     }
   );
