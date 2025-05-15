@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: email-service
+    runtime: node
+    region: virginia
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: MANDRILL_API_KEY
+        value: md-7vUuf1mcxFy63bR6xRjLpw
+      - key: FROM_EMAIL
+        value: contato@montesiaobeneficios.com.br
+      - key: TO_EMAIL
+        value: contato@portosiao.com
+      - key: GOOGLE_SERVICE_ACCOUNT_EMAIL
+        value: porto-siao@monte-siao-442413.iam.gserviceaccount.com
+      - key: GOOGLE_PRIVATE_KEY
+        value: -----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCV2+WfP0QxVcea\nNckhO526eU3nyRYyQHwpH/NWMxVn+g9bGJOhwpQLPe1Y2O3JCJyMhWcLZI19uJuR\ntioJdf0TNhw/twTtsZZga2CKX3RJAx0cGcukI4Bft8nHvu1OBAJKSM7LgftZ/n8t\nGVhJAEQBzJoOkpsTHy2A8c3cwvNz325oJxB/4oQH7THypgqlj8hiq0npU05MDIVB\nBOjl2VOoLEwHqB6Ch0N8qI/6Tce45VTb6PtWAl7kZA59JZdmoVvjWE8To1XI3svJ\nDLk5vmDjb0IjMiKxhchx46bm6/o3Kt4l/f7VdoHxZI6no4B9mFbdrEMkn3Vi8wPH\nKgXKZXMxAgMBAAECggEAC3E62yntfwbZssCgltUCehaBCE2mUDf0Qv+ZiN9lpwbE\n3WPHAfblbuZPlRUbMtphealF8OzAkPTjjACovQgxRqI/De5fhfalUL9iI66eJmUC\nd/7QObwsNSLHWWUOoYJU2m8suwU1t+1isILa5tgKWUjSCoLPLGqZAttzqIOKKzKq\nRg/E+nH36EgY6baHWr4LitCStxfvpibiTPQg22z1n41VKaKn9ZudgdZkjBMMzsF5\nithGbrg7XJmLtlBg77D805AF/Y279XsIrO4b7mKmSCHJ9XBOqgSN0O6f5g85QeIO\nQj4afnRBG0TPlSXk47KbmoAwtNH5ovJ1ZkTDUo4JQQKBgQDFTj8CLFCCJdWoE1CR\n8e+7XfNZg/BycW3rjVRqyKL6qDTMHr++cns7rTvF3QF/3c3kl/JphaiQqvGjxUrK\n5PXPcuOT0Em5yOmUjv51/hMH6Vys+Mx7eYOvP9Kv9xOpoXEDD46gKub/SPrJmenx\nXHKGlEyzx8YjKWVL1fQ0zui9lQKBgQDCcFzz0KgxPmH3Djlht6V1iyidiQ/XPsMA\npGwNLX2B5qUzBPPA15bRtkKDLx83MBp+KhYEqo+5GrR/mSeTaM+JwDh9LXfRczg5\n446GiHsE7wTD3LlYHDe4vGC68YbnjMHUUcLS3wLynkmzWswTpwFsknBhePOX9Wej\ncP9NO0OgLQKBgFhPVkpNtVcbQg7xXi2EgQ121pWpRTSj6lP0tOT6ml/ga4k09hNy\nwA+M0OUVrzcg+qenDrwGM9VUfcUUaA55/j90p8GgB2+dKlbwzZnYN4JiA7Xzweo+\nEB+fTFiwGN/iv2dkTi0IJs36Ry12s0vxWd08gTwyXU+dlpYj1CLSvT8lAoGAdc+Z\nMo3B6xxuRUBUGlYopcDsmg87DuNTSidV5OIkQroabIBapQS7uFNjl5LMqia2Vq1v\na+JgdPquVQXaSeHepgtW7tnG2Jyke8baS7+UMlgUngw2LSHjzUYuofbIE7JgmyHz\nFsvTQGgSJd8k+d9d6IgOGbEsf21NH2XO+t+myP0CgYAuCiM2bA6JGTs/kYG3h+c7\n/1ldX3bFCm06FV+sxPLQ8MLb6pNXWGnXd4bQWaiJrv4vjA2ior7pF1f7m67m2V3V\nWnXn6s+C26HOYqa8VlEaAA8Rkjxf5MQeeGOe6e9w3P5fpGd8kkrb8xxQCsr1SxcJ\nnXOfOqh1fvXlzEZc3x0idQ==\n-----END PRIVATE KEY-----\n
+      - key: SHEET_ID
+        value: 15jgQO_3wEt0Ah4xC7N1A3djIxDuSx_B0gDL8AzSZyIw
+      - key: SHEET_NAME
+        value: leads_consorcio
