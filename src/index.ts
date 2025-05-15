@@ -21,5 +21,5 @@ app.use("/api/auto/email", autoEmailRouter);
 app.use("/api/imovel/email", imovelEmailRouter);
 app.use("/api/pesados/email", pesadosEmailRouter);
 
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
