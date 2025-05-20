@@ -88,3 +88,32 @@ export const sendPesadosEmail = async (
 
   return result;
 };
+
+export const sendSaudeEmail = async (
+  cnpj: string,
+  name: string,
+  email: string,
+  telefone: string,
+  collaborators: string
+) => {
+  const subject = "NOVA SIMULAÇÃO SOLICITADA - Plano de Saúde Bradesco";
+  const html = `
+    <p>Olá! Seguem abaixo os dados de quem solicitou uma simulação do Plano de Saúde Bradesco:</p><br>
+    <p>CNPJ: ${cnpj}</p><p>Nome da Empresa: ${name}</p><p>EMAL: ${email}</p><p>Telefone: ${telefone}</p><p>Quantidade de Funcionarios: ${collaborators}</p>`;
+
+  const result = await axios.post(
+    "https://mandrillapp.com/api/1.0/messages/send.json",
+    {
+      key: MANDRILL_API_KEY,
+      message: {
+        html,
+        subject,
+        from_email: FROM_EMAIL,
+        to: [{ email: TO_EMAIL, type: "to" }],
+      },
+    }
+  );
+  console.log("Mandrill result:", result.data);
+
+  return result;
+};

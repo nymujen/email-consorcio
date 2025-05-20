@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import autoEmailRouter from "./routes/auto-email.route";
 import imovelEmailRouter from "./routes/imovel-email.route";
 import pesadosEmailRouter from "./routes/pesados-email.route";
+import saudeEmailRouter from "./routes/saude-email.route";
 import cors from "cors";
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(
 app.use("/api/auto/email", autoEmailRouter);
 app.use("/api/imovel/email", imovelEmailRouter);
 app.use("/api/pesados/email", pesadosEmailRouter);
+app.use("/api/saude/email", saudeEmailRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
