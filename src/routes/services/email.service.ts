@@ -109,7 +109,7 @@ export const sendSaudeEmail = async (
         html,
         subject,
         from_email: FROM_EMAIL,
-        to: [{ email: TO_EMAIL, type: "to" }],
+        to: [{ email: "douglas@10xcorretora.com", type: "to" }],
       },
     }
   );
