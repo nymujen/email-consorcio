@@ -50,7 +50,49 @@ router.post("/", async (req, res) => {
   const { nome, email, telefone } = req.body;
   try {
     const result = await sendImovelEmail(nome, email, telefone);
-    await appendLeadToSheet("Consórcio Imóvel", nome, email, telefone);
+    await appendLeadToSheet("Consórcio Imóvel Porto", nome, email, telefone);
+    console.log("Mandrill result:", result.data);
+
+    if (result.status !== 200) {
+      res.status(result.status).json({ success: false, error: result.data });
+    }
+    res.status(200).json({ success: true, message: result.data });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+});
+
+router.post("/porto-siao", async (req, res) => {
+  const { nome, email, telefone } = req.body;
+  try {
+    const result = await sendImovelEmail(nome, email, telefone);
+    await appendLeadToSheet(
+      "Consórcio Imóvel Porto Sião",
+      nome,
+      email,
+      telefone
+    );
+    console.log("Mandrill result:", result.data);
+
+    if (result.status !== 200) {
+      res.status(result.status).json({ success: false, error: result.data });
+    }
+    res.status(200).json({ success: true, message: result.data });
+  } catch (error) {
+    res.status(500).json({ success: false, error });
+  }
+});
+
+router.post("/zion-consorcio", async (req, res) => {
+  const { nome, email, telefone } = req.body;
+  try {
+    const result = await sendImovelEmail(nome, email, telefone);
+    await appendLeadToSheet(
+      "Consórcio Imóvel Zion Consórcio",
+      nome,
+      email,
+      telefone
+    );
     console.log("Mandrill result:", result.data);
 
     if (result.status !== 200) {
