@@ -47,7 +47,7 @@ async function appendLeadToSheet(
 const router = Router();
 
 router.post("/", async (req, res) => {
-  const { name, email, telefone, valor_atual, operador_atual, hasCNPJ } =
+  const { name, email, telefone, valor_atual, operador_atual, has_cnpj } =
     req.body;
   try {
     const result = await sendSaudeEmail(
@@ -56,7 +56,7 @@ router.post("/", async (req, res) => {
       telefone,
       valor_atual,
       operador_atual,
-      hasCNPJ
+      has_cnpj
     );
     await appendLeadToSheet("10X Saúde", name, email, telefone);
     console.log("Mandrill result:", result.data);

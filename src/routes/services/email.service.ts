@@ -95,7 +95,7 @@ export const sendSaudeEmail = async (
   telefone: string,
   currentValue: string,
   currentOperator: string,
-  hasCNPJ: string
+  has_cnpj: string
 ) => {
   const subject = "NOVA SIMULAÇÃO SOLICITADA - Plano de Saúde Bradesco";
   const html = `
@@ -104,7 +104,7 @@ export const sendSaudeEmail = async (
     telefone || "-"
   }</p><p>Valor Atual: ${
     currentValue || "-"
-  }</p><p>Operador Atual: ${currentOperator}</p><p>Tem CNPJ ou CAEPF: ${hasCNPJ}</p>`;
+  }</p><p>Operador Atual: ${currentOperator}</p><p>Tem CNPJ ou CAEPF: ${has_cnpj}</p>`;
 
   const result = await axios.post(
     "https://mandrillapp.com/api/1.0/messages/send.json",
