@@ -90,16 +90,21 @@ export const sendPesadosEmail = async (
 };
 
 export const sendSaudeEmail = async (
-  cnpj: string,
   name: string,
   email: string,
   telefone: string,
-  collaborators: string
+  currentValue: string,
+  currentOperator: string,
+  hasCNPJ: string
 ) => {
   const subject = "NOVA SIMULAÇÃO SOLICITADA - Plano de Saúde Bradesco";
   const html = `
     <p>Olá! Seguem abaixo os dados de quem solicitou uma simulação do Plano de Saúde Bradesco:</p><br>
-    <p>CNPJ: ${cnpj}</p><p>Nome da Empresa: ${name}</p><p>EMAL: ${email}</p><p>Telefone: ${telefone}</p><p>Quantidade de Funcionarios: ${collaborators}</p>`;
+    <p>Nome da Empresa: ${name}</p><p>EMAL: ${email}</p><p>Telefone: ${
+    telefone || "-"
+  }</p><p>Valor Atual: ${
+    currentValue || "-"
+  }</p><p>Operador Atual: ${currentOperator}</p><p>Tem CNPJ ou CAEPF: ${hasCNPJ}</p>`;
 
   const result = await axios.post(
     "https://mandrillapp.com/api/1.0/messages/send.json",
