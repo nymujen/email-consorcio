@@ -17,26 +17,30 @@ const auth = new google.auth.JWT(
 
 const sheets = google.sheets({ version: "v4", auth });
 
-const SPREADSHEET_ID = process.env.SHEET_ID!;
+const SPREADSHEET_ID = "1U0rCiTiZ5RtpXBVcasYhL6IXjWk6ocxUjTOXQuENRks";
 
 async function appendLeadToSheet(
-  tipoConsorcio: string,
   nome: string,
   email: string,
-  telefone: string
+  telefone: string,
+  valor_atual: string,
+  operador_atual: string,
+  has_cnpj: string
 ) {
   await sheets.spreadsheets.values.append({
     spreadsheetId: SPREADSHEET_ID,
-    range: `A:E`,
+    range: `A:G`,
     valueInputOption: "USER_ENTERED",
     requestBody: {
       values: [
         [
           new Date().toLocaleString("pt-BR"),
-          tipoConsorcio,
           nome,
           email,
           telefone,
+          valor_atual,
+          operador_atual,
+          has_cnpj,
         ],
       ],
     },
@@ -58,7 +62,14 @@ router.post("/", async (req, res) => {
       operador_atual,
       has_cnpj
     );
-    await appendLeadToSheet("10X Saúde", name, email, telefone);
+    await appendLeadToSheet(
+      name,
+      email,
+      telefone,
+      valor_atual,
+      operador_atual,
+      has_cnpj
+    );
     console.log("Mandrill result:", result.data);
 
     if (result.status !== 200) {
