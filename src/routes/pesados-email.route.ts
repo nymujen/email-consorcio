@@ -23,7 +23,8 @@ async function appendLeadToSheet(
   tipoConsorcio: string,
   nome: string,
   email: string,
-  telefone: string
+  telefone: string,
+  url: string
 ) {
   await sheets.spreadsheets.values.append({
     spreadsheetId: SPREADSHEET_ID,
@@ -37,6 +38,7 @@ async function appendLeadToSheet(
           nome,
           email,
           telefone,
+          url,
         ],
       ],
     },
@@ -50,7 +52,13 @@ router.post("/", async (req, res) => {
   const { nome, email, telefone } = req.body;
   try {
     const result = await sendPesadosEmail(nome, email, telefone);
-    await appendLeadToSheet("Consórcio Pesados Porto", nome, email, telefone);
+    await appendLeadToSheet(
+      "Consórcio Pesados Porto",
+      nome,
+      email,
+      telefone,
+      "https://pesados.portosiao.com.br/"
+    );
     console.log("Mandrill result:", result.data);
 
     if (result.status !== 200) {
@@ -70,7 +78,8 @@ router.post("/porto-siao", async (req, res) => {
       "Consórcio Pesados Porto Sião",
       nome,
       email,
-      telefone
+      telefone,
+      "https://pesados.portosiao.com.br/"
     );
     console.log("Mandrill result:", result.data);
 
@@ -91,7 +100,8 @@ router.post("/zion-consorcio", async (req, res) => {
       "Consórcio Pesados Zion Consórcio",
       nome,
       email,
-      telefone
+      telefone,
+      "https://www.zionconsorcios.com.br/pesados"
     );
     console.log("Mandrill result:", result.data);
 

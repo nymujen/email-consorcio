@@ -23,11 +23,12 @@ async function appendLeadToSheet(
   tipoConsorcio: string,
   nome: string,
   email: string,
-  telefone: string
+  telefone: string,
+  url: string
 ) {
   await sheets.spreadsheets.values.append({
     spreadsheetId: SPREADSHEET_ID,
-    range: `A:E`,
+    range: `A:F`,
     valueInputOption: "USER_ENTERED",
     requestBody: {
       values: [
@@ -37,6 +38,7 @@ async function appendLeadToSheet(
           nome,
           email,
           telefone,
+          url,
         ],
       ],
     },
@@ -50,7 +52,13 @@ router.post("/", async (req: any, res: any) => {
   const { nome, email, telefone } = req.body;
   try {
     const result = await sendAutoEmail(nome, email, telefone);
-    await appendLeadToSheet("Consórcio Auto Porto", nome, email, telefone);
+    await appendLeadToSheet(
+      "Consórcio Auto Porto",
+      nome,
+      email,
+      telefone,
+      "https://auto.portosiao.com.br/"
+    );
 
     console.log("Mandrill result:", result.data);
 
@@ -67,7 +75,13 @@ router.post("/porto-siao", async (req: any, res: any) => {
   const { nome, email, telefone } = req.body;
   try {
     const result = await sendAutoEmail(nome, email, telefone);
-    await appendLeadToSheet("Consórcio Auto Porto Sião", nome, email, telefone);
+    await appendLeadToSheet(
+      "Consórcio Auto Porto Sião",
+      nome,
+      email,
+      telefone,
+      "https://auto.portosiao.com.br/"
+    );
 
     console.log("Mandrill result:", result.data);
 
@@ -88,7 +102,8 @@ router.post("/zion-consorcio", async (req: any, res: any) => {
       "Consórcio Auto Zion Consórcios",
       nome,
       email,
-      telefone
+      telefone,
+      "https://www.zionconsorcios.com.br/auto"
     );
 
     console.log("Mandrill result:", result.data);
