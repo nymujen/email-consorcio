@@ -71,6 +71,29 @@ router.post("/", async (req: any, res: any) => {
   }
 });
 
+router.post("/10x-consorcio", async (req: any, res: any) => {
+  const { nome, email, telefone } = req.body;
+  try {
+    const result = await sendAutoEmail(nome, email, telefone);
+    await appendLeadToSheet(
+      "Consórcio Auto Porto",
+      nome,
+      email,
+      telefone,
+      "https://consorcio.10xcorretora.com.br/auto"
+    );
+
+    console.log("Mandrill result:", result.data);
+
+    if (result.status !== 200) {
+      res.status(result.status).json({ success: false, error: result.data });
+    }
+    res.status(200).json({ success: true, message: result.data });
+  } catch (error: any) {
+    res.status(500).json({ success: false, error });
+  }
+});
+
 router.post("/porto-siao", async (req: any, res: any) => {
   const { nome, email, telefone } = req.body;
   try {
@@ -80,7 +103,7 @@ router.post("/porto-siao", async (req: any, res: any) => {
       nome,
       email,
       telefone,
-      "https://auto.portosiao.com.br/"
+      "https://portosiao.com.br/auto"
     );
 
     console.log("Mandrill result:", result.data);
